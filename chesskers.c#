@@ -1,0 +1,71 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading;
+
+namespace Chesskers
+{
+	public class Program
+	{
+	  public static void draw(int[,]board, bool letters) {
+	    Console.WriteLine("   a b c d e f g h");
+	    Console.WriteLine();
+		  
+		  
+		  for (int i = 0;i<8;i++){
+		    Console.Write(i+1+"  ");
+		    for (int j = 0;j<8;j++){
+		      if (letters){
+		        if (board[i,j] == 1){
+		          Console.Write("W");
+		        } else if(board[i,j] == 2){
+		          Console.Write("B");
+		        } else{
+		          if (((i%2)+j)%2 == 0){ //find active tiles
+		            //active tiles
+		          Console.Write("+");
+		          }else{
+		            //inaccessable tiles
+		            Console.Write("`");
+		          }
+		        }
+		      } else{
+			      Console.Write(board[i,j]);
+			    };
+			    
+			    Console.Write(" ");
+		      
+		    };
+		    Console.WriteLine();
+		  };
+		  
+		  }
+		public static void Main(string[] args)
+		{
+		  int[,] board = {
+		    {2,0,2,0,2,0,2,0},
+		    {0,2,0,2,0,2,0,2},
+		    {2,0,2,0,2,0,2,0},
+		    {0,0,0,0,0,0,0,0},
+		    {0,0,0,0,0,0,0,0},
+		    {0,1,0,1,0,1,0,1},
+		    {1,0,1,0,1,0,1,0},
+		    {0,1,0,1,0,1,0,1}
+
+
+		    
+		  };
+		  //while(true){
+		  draw(board,true);
+		  //Thread.Sleep(1000);
+		  //string move = Console.ReadLine();
+		  //Console.WriteLine(move);
+		  //}
+		  
+		}
+	
+
+		  
+	}
+}

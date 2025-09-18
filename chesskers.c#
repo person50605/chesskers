@@ -126,14 +126,20 @@ namespace Chesskers
 		      } else{ //if it is moving right
 		          
 		          if (board[boardone-1,boardtwo+1] == 0){
-		            
 		            board[boardone-1,boardtwo+1] = (toca+1)%2+1;
 		          }
 		        
 		      }
 		      board[boardone,boardtwo] = boardselect;
 		    }else{ // if it is a king
-		      
+		        if (movex[1] < movex[0]){ //is it moving left?
+		          if (1==1){ //is it moving down?
+		            
+		          }
+		          if (board[boardone-1,boardtwo-1] == 0){
+		            board[boardone-1,boardtwo-1] = (toca+1)%2+1;
+		          }
+		      }
 		    }
 		    board[boardone,boardtwo] = 0;
 		    

@@ -117,11 +117,16 @@ namespace Chesskers
 		  ) {  
 		    
 		    Console.WriteLine("Invalid Move, try again.");
+		    
+		    
 		  } else{
 		    if (boardselect < 3) { // Is it not a king?
 		      if (movex[1] < movex[0]){ //is it moving left?
 		          if (board[boardone-1,boardtwo-1] == 0){
 		            board[boardone-1,boardtwo-1] = (toca+1)%2+1;
+		          } else if (board[boardone-1,boardtwo-1] == (toca)%2+1 && 1==1){ // is there an enemy piece in the way?
+		            
+		            
 		          }
 		      } else{ //if it is moving right
 		          

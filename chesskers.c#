@@ -11,23 +11,34 @@ namespace Chesskers
 	  public static void draw(int[,]board, bool letters) {
 	    Console.WriteLine("   a b c d e f g h");
 	    Console.WriteLine();
-		  
+	    
+	    //change these vars to change the board
+		  string ActiveTiles = "+";
+		  string IncativeTiles = "`";
+		  string One = "w";
+		  string Two = "b";
+		  string Three = "W";
+		  string Four = "B";
 		  
 		  for (int i = 0;i<8;i++){
 		    Console.Write(i+1+"  ");
 		    for (int j = 0;j<8;j++){
 		      if (letters){
 		        if (board[i,j] == 1){
-		          Console.Write("W");
+		          Console.Write(One);
 		        } else if(board[i,j] == 2){
-		          Console.Write("B");
+		          Console.Write(Two);
+		        } else if(board[i,j] == 3){
+		          Console.Write(Three);
+		        } else if(board[i,j] == 4){
+		          Console.Write(Four);
 		        } else{
 		          if (((i%2)+j)%2 == 0){ //find active tiles
 		            //active tiles
-		          Console.Write("+");
+		          Console.Write(ActiveTiles);
 		          }else{
 		            //inaccessable tiles
-		            Console.Write("`");
+		            Console.Write(IncativeTiles);
 		          }
 		        }
 		      } else{
@@ -39,7 +50,8 @@ namespace Chesskers
 		    };
 		    Console.WriteLine();
 		  };
-		  
+		  //add an extra space
+		  Console.WriteLine();
 		  }
 		public static void Main(string[] args)
 		{
@@ -52,16 +64,75 @@ namespace Chesskers
 		    {0,1,0,1,0,1,0,1},
 		    {1,0,1,0,1,0,1,0},
 		    {0,1,0,1,0,1,0,1}
-
-
-		    
 		  };
+		  
+		  int toca = 1;
 		  //while(true){
+		  
 		  draw(board,true);
+		  Console.WriteLine("Your move (L#-L#)");
+		  
 		  //Thread.Sleep(1000);
-		  //string move = Console.ReadLine();
-		  //Console.WriteLine(move);
+		  string move = "b6-c5"; //Console.ReadLine();
+		  
+		  Console.WriteLine(move);
 		  //}
+		  
+		  string[] cartas = {"a","b","c","d","e","f","g","h"};
+		  
+		  //moving
+		  
+		  //find the equivalent column of the letters
+		  string movex = Array.IndexOf(cartas,move[0].ToString()).ToString();
+		  movex = movex + Array.IndexOf(cartas,move[3].ToString()).ToString();
+		  
+		  
+      
+      
+      int boardone = int.Parse(move[1].ToString())-1;
+      int boardtwo = int.Parse(movex[0].ToString());
+      int boardselect = board[int.Parse(move[1].ToString())-1,int.Parse(movex[0].ToString())];
+      //Fail conditions
+		  if (
+		     movex[0].ToString() == "9" //Is the start x pos not on the board?
+		  || movex[1].ToString() == "9" //Is the end x pos not on the board?
+		  || boardselect%2 != toca%2 //Is the selected space either a 0 or an opponent's piece?
+		  || (((boardone+1)%2)+boardtwo)%2 == 0 //Is the tile inactive?
+		  || int.Parse(move[1].ToString()) < 1 //Is the start pos y not on the board?
+		  || int.Parse(move[1].ToString()) > 8 //Is the start pos y not on the board?
+		  || int.Parse(move[4].ToString()) < 1 //Is the end pos y not on the board?
+		  || int.Parse(move[4].ToString()) > 8 //Is the end pos y not on the board?
+		  || movex.ToString().Contains("-") //Does either movement x not exist?
+		  
+		  ) {  
+		    
+		    Console.WriteLine("Invalid Move, try again.");
+		  } else{
+		    if (boardselect < 3) { // Is it not a king?
+		      if (movex[1] < movex[0]){ //is it moving left?
+		          if (board[boardone-1,boardtwo-1] == 0){
+		            board[boardone-1,boardtwo-1] = (toca+1)%2+1;
+		          }
+		      } else{ //if it is moving right
+		          
+		          if (board[boardone-1,boardtwo+1] == 0){
+		            
+		            board[boardone-1,boardtwo+1] = (toca+1)%2+1;
+		          }
+		        
+		      }
+		      board[boardone,boardtwo] = boardselect;
+		    }else{ // if it is a king
+		      
+		    }
+		    board[boardone,boardtwo] = 0;
+		    
+		    
+        
+		  }
+
+		 
+		 draw(board,true);
 		  
 		}
 	

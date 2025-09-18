@@ -67,6 +67,16 @@ namespace Chesskers
 		  };
 		  
 		  int toca = 1;
+		  Console.WriteLine("Play agianst bot? (y/n)");
+		  string contesta = Console.ReadLine();
+		  //Console.WriteLine(contesta);
+		  
+		  //do they want to play against the bot?
+		  bool bot = false;
+		  if (contesta == "y" || contesta == "yes"){
+		    bot = true;
+		  }
+		  
 		  //while(true){
 		  
 		  draw(board,true);

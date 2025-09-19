@@ -122,16 +122,17 @@ namespace Chesskers
 		  } else{
 		    if (boardselect < 3) { // Is it not a king?
 		      if (movex[1] < movex[0]){ //is it moving left?
-		          if (board[boardone-1,boardtwo-1] == 0){
-		            board[boardone-1,boardtwo-1] = (toca+1)%2+1;
-		          } else if (board[boardone-1,boardtwo-1] == (toca)%2+1 && 1==1){ // is there an enemy piece in the way?
-		            
-		            
+		          if (board[boardone+(2*(board[boardone,boardtwo]-1)-1),boardtwo-1] == 0){
+		            board[boardone+(2*(board[boardone,boardtwo]-1)-1),boardtwo-1] = (toca+1)%2+1;
+		          } else if (board[boardone+(2*(board[boardone,boardtwo]-1)-1),boardtwo-1] == (toca)%2+1 && 1==1){ // is there an enemy piece in the way?
+		            //Jump
+		            //kill
 		          }
 		      } else{ //if it is moving right
 		          
-		          if (board[boardone-1,boardtwo+1] == 0){
-		            board[boardone-1,boardtwo+1] = (toca+1)%2+1;
+		          if (board[boardone+(2*(board[boardone,boardtwo]-1)-1),boardtwo+1] == 0){
+		            board[boardone+(2*(board[boardone,boardtwo]-1)-1),boardtwo+1] = (toca+1)%2+1;
+		            
 		          }
 		        
 		      }
